@@ -1,0 +1,64 @@
+# File: clock.kv
+#:kivy 1.9.1
+#:import kivy kivy
+#:import win kivy.core.window
+
+<Label>:
+    font_name: 'Roboto'
+    font_size: 60
+    markup: True
+
+
+<RobotoButton@Button>:
+    font_name: 'Roboto'
+    font_size: 25
+    bold: True
+    background_normal: 'data/button_normal.png'
+    background_down: 'data/button_down.png'
+    border: (6, 6, 6, 6)
+
+
+ClockLayout:
+    orientation: 'horizontal'
+    size: (1, 1)
+    
+    Image:
+        source: 'data/green_pl_bg.jpg'
+        allow_stretch: True
+        keep_ratio: False
+        size: self.size
+        pos_hint: {'top': 1}
+    
+    BoxLayout:
+        height: self.height
+        orientation: 'vertical'
+        padding: 20
+        spacing: 20
+        size_hint: (1, 1)
+        
+        Label:
+            id: time
+            text: '[b]00[/b]:00:00'
+            #markup: True
+            #font_name: 'Roboto'
+            #font_size: 60
+            
+        GridLayout:
+            cols: 2
+            spacing: 10
+            
+            RobotoButton:
+                id: start_stop
+                text: 'Start'
+                size_hint: (0.5, 0.5)
+                on_press: app.start_stop()
+                
+            RobotoButton:
+                id: resetbutton
+                text: 'Reset'
+                size_hint: (0.5, 0.5)
+                on_press: app.reset()
+            
+        Label:
+            id: stopwatch
+            text: '00:00.[size=40]00[/size]'
